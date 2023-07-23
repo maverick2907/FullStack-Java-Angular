@@ -1,0 +1,53 @@
+<h1>Lista de empresas</h1>
+
+<div class="text-end">
+    <button mat-raised-button color="primary" routerLink="/new">
+        Nueva empresa
+    </button>
+</div>
+
+<div *ngIf="empresaPage">
+    <table mat-table [dataSource]="empresaPage.companies.content">
+
+        <ng-container matColumnDef="rsruc">
+            <th mat-header-cell *matHeaderCellDef> Razon Social / RUC </th>
+            <td mat-cell *matCellDef="let empresa">
+                <div class="d-flex gap-2">
+                    <div>
+                        <div class="fw-bold"> {{empresa.razon_social}} </div>
+                        <p> {{empresa.ruc}} </p>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dir">
+            <th mat-header-cell *matHeaderCellDef> Dirección </th>
+            <td mat-cell *matCellDef="let empresa"> {{empresa.direccion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let empresa"> {{empresa.estado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let empresa" class="text-end">
+                <button mat-icon-button color="primary" [routerLink]="[empresa.empresa_id, 'edit']">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" class="ms-2" (click)="deleteEmpresa(empresa)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [length]="empresaPage.companies.totalElements"
+        [pageSize]="empresaPage.companies.size" (page)="onPaginate($event)">
+    </mat-paginator>
+</div>

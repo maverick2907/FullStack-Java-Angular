@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <span>Panel Administrativo</span>
+
+    <button mat-flat-button color="primary" routerLink="/" class="ms-3">
+        Inicio
+    </button>
+
+    <button mat-flat-button color="primary" routerLink="/empresas" class="ms-3">
+        Empresas
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button>
+        <mat-icon>account_circle</mat-icon> Max Valenzuela
+    </button>
+</mat-toolbar>
+
+<div class="container py-5">
+    <router-outlet></router-outlet>
+</div>

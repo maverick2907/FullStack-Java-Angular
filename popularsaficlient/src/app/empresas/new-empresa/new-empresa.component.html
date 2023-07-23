@@ -1,0 +1,63 @@
+<div>
+    <h1>Nueva empresa</h1>
+
+    <div class="mt-5 alert alert-danger" *ngIf="errors">
+        {{ errors | json }}
+    </div>
+
+    <form class="mt-5" [formGroup]="form" autocomplete="off" (ngSubmit)="save()">
+        <mat-form-field appearance="outline" class="mb-2 d-block">
+            <mat-label for="razon_social">RAZÓN SOCIAL</mat-label>
+            <input matInput type="text" placeholder="razon social" class="form-control"
+                formControlName="razon_social">
+
+            <mat-error class="invalid-feedback">
+                <ng-container *ngIf="controlHasError('razon_social', 'required')">
+                    Este campo es obligatorio
+                </ng-container>
+                <ng-container *ngIf="controlHasError('razon_social', 'minlength')">
+                    Debe tener al menos 5 caracteres
+                </ng-container>
+                <ng-container *ngIf="controlHasError('razon_social', 'maxlength')">
+                    Debe tener 100 caracteres como máximo
+                </ng-container>
+            </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mb-2 d-block">
+            <mat-label for="ruc">RUC</mat-label>
+            <input matInput type="text" placeholder="ruc" class="form-control" formControlName="ruc">
+            <mat-error class="invalid-feedback">
+                <ng-container *ngIf="controlHasError('ruc', 'required')">
+                    Este campo es obligatorio
+                </ng-container>
+                <ng-container *ngIf="controlHasError('ruc', 'minlength')">
+                    Debe tener 11 caracteres númericos
+                </ng-container>
+                <ng-container *ngIf="controlHasError('ruc', 'maxlength')">
+                    Debe tener 11 caracteres númericos
+                </ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="mb-2 d-block">
+            <mat-label for="direccion">DIRECCIÓN</mat-label>
+            <input matInput type="text" placeholder="dirección" class="form-control" formControlName="direccion">
+            <mat-error class="invalid-feedback">
+                <ng-container *ngIf="controlHasError('direccion', 'required')">
+                    Este campo es obligatorio
+                </ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <div class="text-end">
+            <button type="button" class="btn btn-light" routerLink="/">
+                Cancelar
+            </button>
+            <button class="btn btn-primary ms-2">
+                Crear empresa
+            </button>
+        </div>
+    </form>
+</div>

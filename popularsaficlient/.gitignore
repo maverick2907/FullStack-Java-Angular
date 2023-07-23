@@ -1,0 +1,9 @@
+# Ignorar carpetas
+node_modules/
+dist/
+.angular/*
+.idea/
+.vscode/
+
+# Ignorar archivos
+.env
